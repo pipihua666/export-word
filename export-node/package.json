@@ -1,0 +1,13 @@
+{
+  "name": "export-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "docx": "^6.0.3",
+    "echarts": "^5.1.2",
+    "express": "^4.17.1",
+    "puppeteer": "^10.1.0"
+  }
+}

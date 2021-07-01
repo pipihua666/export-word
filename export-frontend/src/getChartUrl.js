@@ -1,6 +1,10 @@
 import * as echarts from 'echarts'
 
-// 通过echarts的实例api生成图表base64
+/**
+ * @description:通过echarts的实例api生成图表base64
+ * @param {option} echarts图表的option配置
+ * @return {dataUrl} 图表的base64编码url
+ */
 const getChartDataUrl = (option = {}) => {
   const container = document.createElement('div')
   container.id = 'container'
