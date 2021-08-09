@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"io/ioutil"
 	"os"
+	"strings"
 	"text/template"
 
 	"github.com/gin-gonic/gin"
@@ -98,8 +99,21 @@ func writeTemplateToFile(source, destination string, dataSource interface{}) err
 		return err
 	}
 
+	// Declare the functions used in the template
+	funcMap := template.FuncMap{
+		"xmlEscape": func(str string) string {
+			str = strings.ReplaceAll(str, "&", "&amp;")
+			str = strings.ReplaceAll(str, "<", "&lt;")
+			str = strings.ReplaceAll(str, ">", "&gt;")
+			str = strings.ReplaceAll(str, "\"", "&quot;")
+			str = strings.ReplaceAll(str, "'", "&apos;")
+
+			return str
+		},
+	}
+
 	// 解析数据到模板中
-	tmpl, err := template.New(source).Parse((string(content)))
+	tmpl, err := template.New(source).Funcs(funcMap).Parse((string(content)))
 	if err != nil {
 		return err
 	}
